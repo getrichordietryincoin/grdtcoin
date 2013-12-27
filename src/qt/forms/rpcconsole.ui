@@ -7,17 +7,17 @@
     <x>0</x>
     <y>0</y>
     <width>740</width>
-    <height>450</height>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>FooCoin - Debug window</string>
+   <string>grdtcoin - Debug window</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_info">
       <attribute name="title">
@@ -322,7 +322,7 @@
        <item row="15" column="0">
         <widget class="QPushButton" name="openDebugLogfileButton">
          <property name="toolTip">
-          <string>Open the FooCoin debug logfile from the current data directory. This can take a few seconds for large logfiles.</string>
+          <string>Open the grdtcoin debug logfile from the current data directory. This can take a few seconds for large logfiles.</string>
          </property>
          <property name="text">
           <string>&amp;Open</string>
@@ -348,13 +348,10 @@
        <item row="17" column="0">
         <widget class="QPushButton" name="showCLOptionsButton">
          <property name="toolTip">
-          <string>Show the foocoin-qt help message to get a list with possible command-line options.</string>
+          <string>Show the grdtcoin-qt help message to get a list with possible command-line options.</string>
          </property>
          <property name="text">
           <string>&amp;Show</string>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
          </property>
          <property name="autoDefault">
           <bool>false</bool>

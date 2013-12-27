@@ -25,143 +25,143 @@ ResetArgs(const std::string& strArg)
 
 BOOST_AUTO_TEST_CASE(boolarg)
 {
-    ResetArgs("-foo");
-    BOOST_CHECK(GetBoolArg("-foo"));
-    BOOST_CHECK(GetBoolArg("-foo", false));
-    BOOST_CHECK(GetBoolArg("-foo", true));
+    ResetArgs("-grdtcoin");
+    BOOST_CHECK(GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(GetBoolArg("-grdtcoin", false));
+    BOOST_CHECK(GetBoolArg("-grdtcoin", true));
 
     BOOST_CHECK(!GetBoolArg("-fo"));
     BOOST_CHECK(!GetBoolArg("-fo", false));
     BOOST_CHECK(GetBoolArg("-fo", true));
 
-    BOOST_CHECK(!GetBoolArg("-fooo"));
-    BOOST_CHECK(!GetBoolArg("-fooo", false));
-    BOOST_CHECK(GetBoolArg("-fooo", true));
+    BOOST_CHECK(!GetBoolArg("-grdtcoino"));
+    BOOST_CHECK(!GetBoolArg("-grdtcoino", false));
+    BOOST_CHECK(GetBoolArg("-grdtcoino", true));
 
-    ResetArgs("-foo=0");
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
+    ResetArgs("-grdtcoin=0");
+    BOOST_CHECK(!GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", false));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", true));
 
-    ResetArgs("-foo=1");
-    BOOST_CHECK(GetBoolArg("-foo"));
-    BOOST_CHECK(GetBoolArg("-foo", false));
-    BOOST_CHECK(GetBoolArg("-foo", true));
+    ResetArgs("-grdtcoin=1");
+    BOOST_CHECK(GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(GetBoolArg("-grdtcoin", false));
+    BOOST_CHECK(GetBoolArg("-grdtcoin", true));
 
     // New 0.6 feature: auto-map -nosomething to !-something:
-    ResetArgs("-nofoo");
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
+    ResetArgs("-nogrdtcoin");
+    BOOST_CHECK(!GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", false));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", true));
 
-    ResetArgs("-nofoo=1");
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
+    ResetArgs("-nogrdtcoin=1");
+    BOOST_CHECK(!GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", false));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", true));
 
-    ResetArgs("-foo -nofoo");  // -foo should win
-    BOOST_CHECK(GetBoolArg("-foo"));
-    BOOST_CHECK(GetBoolArg("-foo", false));
-    BOOST_CHECK(GetBoolArg("-foo", true));
+    ResetArgs("-grdtcoin -nogrdtcoin"); // -grdtcoin should win
+    BOOST_CHECK(GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(GetBoolArg("-grdtcoin", false));
+    BOOST_CHECK(GetBoolArg("-grdtcoin", true));
 
-    ResetArgs("-foo=1 -nofoo=1");  // -foo should win
-    BOOST_CHECK(GetBoolArg("-foo"));
-    BOOST_CHECK(GetBoolArg("-foo", false));
-    BOOST_CHECK(GetBoolArg("-foo", true));
+    ResetArgs("-grdtcoin=1 -nogrdtcoin=1"); // -grdtcoin should win
+    BOOST_CHECK(GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(GetBoolArg("-grdtcoin", false));
+    BOOST_CHECK(GetBoolArg("-grdtcoin", true));
 
-    ResetArgs("-foo=0 -nofoo=0");  // -foo should win
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
+    ResetArgs("-grdtcoin=0 -nogrdtcoin=0"); // -grdtcoin should win
+    BOOST_CHECK(!GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", false));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", true));
 
     // New 0.6 feature: treat -- same as -:
-    ResetArgs("--foo=1");
-    BOOST_CHECK(GetBoolArg("-foo"));
-    BOOST_CHECK(GetBoolArg("-foo", false));
-    BOOST_CHECK(GetBoolArg("-foo", true));
+    ResetArgs("--grdtcoin=1");
+    BOOST_CHECK(GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(GetBoolArg("-grdtcoin", false));
+    BOOST_CHECK(GetBoolArg("-grdtcoin", true));
 
-    ResetArgs("--nofoo=1");
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
+    ResetArgs("--nogrdtcoin=1");
+    BOOST_CHECK(!GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", false));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", true));
 
 }
 
 BOOST_AUTO_TEST_CASE(stringarg)
 {
     ResetArgs("");
-    BOOST_CHECK_EQUAL(GetArg("-foo", ""), "");
-    BOOST_CHECK_EQUAL(GetArg("-foo", "eleven"), "eleven");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", ""), "");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", "eleven"), "eleven");
 
-    ResetArgs("-foo -bar");
-    BOOST_CHECK_EQUAL(GetArg("-foo", ""), "");
-    BOOST_CHECK_EQUAL(GetArg("-foo", "eleven"), "");
+    ResetArgs("-grdtcoin -bar");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", ""), "");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", "eleven"), "");
 
-    ResetArgs("-foo=");
-    BOOST_CHECK_EQUAL(GetArg("-foo", ""), "");
-    BOOST_CHECK_EQUAL(GetArg("-foo", "eleven"), "");
+    ResetArgs("-grdtcoin=");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", ""), "");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", "eleven"), "");
 
-    ResetArgs("-foo=11");
-    BOOST_CHECK_EQUAL(GetArg("-foo", ""), "11");
-    BOOST_CHECK_EQUAL(GetArg("-foo", "eleven"), "11");
+    ResetArgs("-grdtcoin=11");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", ""), "11");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", "eleven"), "11");
 
-    ResetArgs("-foo=eleven");
-    BOOST_CHECK_EQUAL(GetArg("-foo", ""), "eleven");
-    BOOST_CHECK_EQUAL(GetArg("-foo", "eleven"), "eleven");
+    ResetArgs("-grdtcoin=eleven");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", ""), "eleven");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", "eleven"), "eleven");
 
 }
 
 BOOST_AUTO_TEST_CASE(intarg)
 {
     ResetArgs("");
-    BOOST_CHECK_EQUAL(GetArg("-foo", 11), 11);
-    BOOST_CHECK_EQUAL(GetArg("-foo", 0), 0);
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", 11), 11);
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", 0), 0);
 
-    ResetArgs("-foo -bar");
-    BOOST_CHECK_EQUAL(GetArg("-foo", 11), 0);
+    ResetArgs("-grdtcoin -bar");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", 11), 0);
     BOOST_CHECK_EQUAL(GetArg("-bar", 11), 0);
 
-    ResetArgs("-foo=11 -bar=12");
-    BOOST_CHECK_EQUAL(GetArg("-foo", 0), 11);
+    ResetArgs("-grdtcoin=11 -bar=12");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", 0), 11);
     BOOST_CHECK_EQUAL(GetArg("-bar", 11), 12);
 
-    ResetArgs("-foo=NaN -bar=NotANumber");
-    BOOST_CHECK_EQUAL(GetArg("-foo", 1), 0);
+    ResetArgs("-grdtcoin=NaN -bar=NotANumber");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", 1), 0);
     BOOST_CHECK_EQUAL(GetArg("-bar", 11), 0);
 }
 
 BOOST_AUTO_TEST_CASE(doubledash)
 {
-    ResetArgs("--foo");
-    BOOST_CHECK_EQUAL(GetBoolArg("-foo"), true);
+    ResetArgs("--grdtcoin");
+    BOOST_CHECK_EQUAL(GetBoolArg("-grdtcoin"), true);
 
-    ResetArgs("--foo=verbose --bar=1");
-    BOOST_CHECK_EQUAL(GetArg("-foo", ""), "verbose");
+    ResetArgs("--grdtcoin=verbose --bar=1");
+    BOOST_CHECK_EQUAL(GetArg("-grdtcoin", ""), "verbose");
     BOOST_CHECK_EQUAL(GetArg("-bar", 0), 1);
 }
 
 BOOST_AUTO_TEST_CASE(boolargno)
 {
-    ResetArgs("-nofoo");
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
+    ResetArgs("-nogrdtcoin");
+    BOOST_CHECK(!GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", true));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", false));
 
-    ResetArgs("-nofoo=1");
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
+    ResetArgs("-nogrdtcoin=1");
+    BOOST_CHECK(!GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", true));
+    BOOST_CHECK(!GetBoolArg("-grdtcoin", false));
 
-    ResetArgs("-nofoo=0");
-    BOOST_CHECK(GetBoolArg("-foo"));
-    BOOST_CHECK(GetBoolArg("-foo", true));
-    BOOST_CHECK(GetBoolArg("-foo", false));
+    ResetArgs("-nogrdtcoin=0");
+    BOOST_CHECK(GetBoolArg("-grdtcoin"));
+    BOOST_CHECK(GetBoolArg("-grdtcoin", true));
+    BOOST_CHECK(GetBoolArg("-grdtcoin", false));
 
-    ResetArgs("-foo --nofoo");
-    BOOST_CHECK(GetBoolArg("-foo"));
+    ResetArgs("-grdtcoin --nogrdtcoin");
+    BOOST_CHECK(GetBoolArg("-grdtcoin"));
 
-    ResetArgs("-nofoo -foo"); // foo always wins:
-    BOOST_CHECK(GetBoolArg("-foo"));
+    ResetArgs("-nogrdtcoin -grdtcoin"); // grdtcoin always wins:
+    BOOST_CHECK(GetBoolArg("-grdtcoin"));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
